@@ -325,7 +325,6 @@ export const RunCommand = effectCmd({
       const files: { type: "file"; url: string; filename: string; mime: string }[] = []
       if (args.file) {
         const list = Array.isArray(args.file) ? args.file : [args.file]
-
         for (const filePath of list) {
           const resolvedPath = path.resolve(process.cwd(), filePath)
           if (!(await Filesystem.exists(resolvedPath))) {
@@ -370,6 +369,11 @@ export const RunCommand = effectCmd({
         {
           permission: "plan_exit",
           action: "deny",
+          pattern: "*",
+        },
+        {
+          permission: "edit",
+          action: "allow",
           pattern: "*",
         },
       ]
